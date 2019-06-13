@@ -1,0 +1,16 @@
+header.stickey-top
+  nav.navbar.navbar-expand-md.navbar-light.bg-light
+    .container-fluid
+      = link_to "Spending Note", "#", id: "logo", class: "navbar-bland"
+      button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarResponsive
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            = link_to "Home", "#", class: "nav-link"
+          li.nav-item
+            = link_to "About", "#", class: "nav-link"
+          li.nav-item
+            = link_to "Note", "#", class: "nav-link"
+          li.nav-item
+            = link_to "Login", "#", class: "nav-link"
