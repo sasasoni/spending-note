@@ -1,27 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
+Spending-Note は、支出の合計金額を記録して家計簿代わりに。また、親にお遣い費用、食費や飲み物代など最低限の費用を自動でメールで請求することに特化したアプリです。
 
 ### create database
 
