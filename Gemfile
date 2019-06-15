@@ -66,3 +66,5 @@ gem 'html2slim'
 
 # using Honoka
 # gem 'bootstrap'
+
+gem 'devise'
