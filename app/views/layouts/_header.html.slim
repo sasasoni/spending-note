@@ -1,7 +1,8 @@
 header.stickey-top
   nav.navbar.navbar-expand-md.navbar-light.bg-light
     .container-fluid
-      = link_to "Spending Note", "#", id: "logo", class: "navbar-brand"
+      = link_to "Spending Note", root_url, id: "logo", class: "navbar-brand"
+
       button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarResponsive"
         span.navbar-toggler-icon
       .collapse.navbar-collapse#navbarResponsive
@@ -9,8 +10,19 @@ header.stickey-top
           li.nav-item
             = link_to "Home", "#", class: "nav-link"
           li.nav-item
-            = link_to "About", "#", class: "nav-link"
-          li.nav-item
             = link_to "Note", "#", class: "nav-link"
+          - if user_signed_in?
+            li.nav-item.dropdown
+              a.nav-link.dropdown-toggle#navbar-Dropdown href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                | Account
+              .dropdown-menu aria-labelledby="navbarDropdown"
+                = link_to "プロフィール", edit_user_registration_path, class: "dropdown-item"
+                .dropdown-divider
+                = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
+          - else
+            li.nav-item
+              = link_to "サインアップ", new_user_registration_path, class: "nav-link"
+            li.nav-item
+              = link_to "ログイン", new_user_session_path, class: "nav-link"
           li.nav-item
-            = link_to "Login", "#", class: "nav-link"
+            = link_to "About", "#", class: "nav-link"

@@ -68,3 +68,6 @@ gem 'html2slim'
 # gem 'bootstrap'
 
 gem 'devise'
+
+# jquery
+gem 'jquery-rails'

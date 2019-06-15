@@ -1,0 +1,18 @@
+h2
+  | ログイン
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+  = f.label :email, "メールアドレス"
+  = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+
+  = f.label :password, "パスワード"
+  = f.password_field :password, autocomplete: "current-password", class: "form-control"
+
+  - if devise_mapping.rememberable?
+    .custom-control.custom-checkbox.mb-2
+      = f.check_box :remember_me, class: "custom-control-input"
+      = f.label :remember_me, "アカウントを保存する", class: "custom-control-label"
+
+  = f.submit "ログイン", class: "btn btn-primary my-2"
+= render "devise/shared/links"
