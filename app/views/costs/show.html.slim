@@ -1,0 +1,26 @@
+h1 経費の詳細
+
+.nav.justify-content-end
+  = link_to "一覧", costs_path, class: "nav-link"
+
+table.table.table-hover
+  tr
+    th= Cost.human_attribute_name(:name)
+    td= @cost.name
+  tr
+    th= Cost.human_attribute_name(:expenditure)
+    td
+      |￥
+      = @cost.expenditure
+  tr
+    th= Cost.human_attribute_name(:paid_date)
+    td= @cost.paid_date.strftime("%Y年%m月%d日")
+  tr
+    th= Cost.human_attribute_name(:created_at)
+    td.small= @cost.created_at.strftime("%Y年%m月%d日 %H:%M")
+  tr
+    th= Cost.human_attribute_name(:demand)
+    td= @cost.demand? ? "〇" : "-"
+
+= link_to "編集", edit_cost_path(@cost), class: "btn btn-success mr-3"
+= link_to "削除", cost_path(@cost), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"

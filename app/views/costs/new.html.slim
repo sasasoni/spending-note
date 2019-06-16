@@ -1,0 +1,28 @@
+h1 経費の新規登録
+
+.nav.justify-content-end
+  = link_to "一覧", costs_path, class: "nav-link"
+
+- if @cost.errors.present?
+  ul#error_explanation.alert.alert-danger
+    - @cost.errors.full_messages.each do |message|
+      li.text-danger.ml-3= message
+
+= form_with model: @cost, local: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control", id: "cost_name"
+
+  .form-group
+    = f.label :expenditure
+    = f.text_field :expenditure, class: "form-control", id: "cost_expenditure"
+
+  = f.label :paid_date
+  .form-inline
+    = f.date_select :paid_date, { start_year: Time.current.year, end_year: Time.current.year + 1, use_month_number: true }, class: "form-control date-select"
+
+  .custom-control.custom-checkbox.mb-2
+    = f.check_box :demand, checked: true, class: "custom-control-input"
+    = f.label :demand, "請求する", class: "custom-control-label"
+
+  = f.submit "登録", class: "btn btn-primary"
