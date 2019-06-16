@@ -3,6 +3,31 @@ h1
   | 期の支出データ
 
 p
-  |合計金額
+  = link_to "<<", survey_costs_path(year: @date.last_month.year, month: @date.last_month.month), class: "btn btn-outline-info mr-3"
+  = link_to "今月", survey_costs_path(year: Time.current.year, month: Time.current.month), class: "btn btn-outline-info mr-3"
+  = link_to ">>", survey_costs_path(year: @date.next_month.year, month: @date.next_month.month), class: "btn btn-outline-info"
+
+h5
+  |合計支出:
   = @total_cost
   |円
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Cost.human_attribute_name(:name)
+      th= Cost.human_attribute_name(:expenditure)
+      th= Cost.human_attribute_name(:paid_date)
+      th= Cost.human_attribute_name(:demand)
+      th
+    tbody
+      - @costs.each do |cost|
+        tr
+          td= link_to cost.name, cost
+          td= cost.expenditure
+          td= cost.paid_date
+          td= cost.demand? ? "〇" : "-"
+          td
+            = link_to "編集", edit_cost_path(cost), class: "btn btn-success mr-3"
+            = link_to "削除", cost_path(cost), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"
