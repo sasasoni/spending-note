@@ -42,6 +42,25 @@ class CostsController < ApplicationController
     redirect_to costs_url
   end
 
+  def survey
+    # 5/25/00:00~6/24/23:59は6月分として集計したい
+    # costs/survey?year=2019&month=6
+    begin
+      @date = Time.zone.local(params[:year], params[:month])
+    rescue
+      return redirect_to root_path
+    end
+    # begin
+    #   raw_date = Time.parse(params[:date])
+    # rescue
+    #   return redirect_to root_path
+    # end
+    # # 取り出した日がその月の25日以降か? 翌月 : 今月
+    # @date = raw_date >= raw_date.beginning_of_month.advance(days: 24) ? raw_date.next_month : raw_date
+    @costs = current_user.costs.period(@date)
+    @total_cost = @costs.sum(:expenditure)
+  end
+
   private
 
   def cost_params
