@@ -1,4 +1,6 @@
 class CostsController < ApplicationController
+  before_action :login_required
+
   def index
     @items = Item.all.pluck(:name)
     @costs = current_user.costs.latest
@@ -82,5 +84,9 @@ class CostsController < ApplicationController
       :demand,
       :item_id
     )
+  end
+
+  def login_required
+    redirect_to new_user_session_path, notice: "ログインしてください" unless current_user
   end
 end
