@@ -10,6 +10,8 @@ header.stickey-top
           li.nav-item
             = link_to "Home", root_url, class: "nav-link"
           li.nav-item
+            = link_to "Spending", costs_path, class: "nav-link"
+          li.nav-item
             = link_to "Note", survey_costs_path, class: "nav-link"
           - if user_signed_in?
             li.nav-item.dropdown

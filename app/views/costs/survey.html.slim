@@ -2,10 +2,13 @@ h1.page-header year="#{@year}" month="#{@month}"
   = @date.strftime("%Y年%m月")
   | 期の支出データ
 
-p
-  = link_to "<<", survey_costs_path(year: @date.last_month.year, month: @date.last_month.month), class: "btn btn-outline-info mr-3"
-  = link_to "今月", survey_costs_path(year: Time.current.year, month: Time.current.month), class: "btn btn-outline-info mr-3"
-  = link_to ">>", survey_costs_path(year: @date.next_month.year, month: @date.next_month.month), class: "btn btn-outline-info"
+.d-flex.bd-highlight.mb-3
+  .mr-auto
+    = link_to "<<", survey_costs_path(year: @date.last_month.year, month: @date.last_month.month), class: "btn btn-outline-info mr-3"
+    = link_to "今月", survey_costs_path(year: Time.current.year, month: Time.current.month), class: "btn btn-outline-info mr-3"
+    = link_to ">>", survey_costs_path(year: @date.next_month.year, month: @date.next_month.month), class: "btn btn-outline-info"
+  .
+    = link_to "新規登録", new_cost_path, class: "btn btn-primary"
 
 
 - if @costs.any?
