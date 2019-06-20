@@ -3,7 +3,8 @@ class CostsController < ApplicationController
 
   def index
     @items = Item.all.pluck(:name)
-    @costs = current_user.costs.latest
+    @q = current_user.costs.ransack(params[:q])
+    @costs = @q.result(distinct: true)
     # @costs = current_user.costs.latest.joins(:item).select('costs.*, items.name AS item_name')
   end
 
@@ -66,7 +67,10 @@ class CostsController < ApplicationController
     # end
     # # 取り出した日がその月の25日以降か? 翌月 : 今月
     # @date = raw_date >= raw_date.beginning_of_month.advance(days: 24) ? raw_date.next_month : raw_date
-    @costs = current_user.costs.period(@date)
+    @q = current_user.costs.period(@date).ransack(params[:q])
+    @costs = @q.result(distinct: true)
+    @items = Item.all.pluck(:name)
+
     @total_cost = @costs.sum(:expenditure)
     respond_to do |format|
       format.html

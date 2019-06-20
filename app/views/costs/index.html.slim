@@ -6,11 +6,11 @@ h1 経費一覧
 table.table.table-hover
   thead.thead-default
     tr
-      th= Cost.human_attribute_name(:name)
-      th= Cost.human_attribute_name(:expenditure)
-      th= Cost.human_attribute_name(:item)
-      th= Cost.human_attribute_name(:paid_date)
-      th= Cost.human_attribute_name(:demand)
+      th= sort_link(@q, :name) 
+      th= sort_link(@q, :expenditure)
+      th= sort_link(@q, :item, "費目")
+      th= sort_link(@q, :paid_date)
+      th= sort_link(@q, :demand)
       th
     tbody
       - @costs.each do |cost|
