@@ -1,5 +1,7 @@
 class Cost < ApplicationRecord
   belongs_to :user
+  belongs_to :item
+
   validates :user_id, presence: true
   validates :name, presence: true
   validates :expenditure, presence: true, numericality:
