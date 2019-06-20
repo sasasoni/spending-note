@@ -8,9 +8,9 @@ header.stickey-top
       .collapse.navbar-collapse#navbarResponsive
         ul.navbar-nav.ml-auto
           li.nav-item
-            = link_to "Home", "#", class: "nav-link"
+            = link_to "Home", root_url, class: "nav-link"
           li.nav-item
-            = link_to "Note", "#", class: "nav-link"
+            = link_to "Note", survey_costs_path, class: "nav-link"
           - if user_signed_in?
             li.nav-item.dropdown
               a.nav-link.dropdown-toggle#navbar-Dropdown href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"

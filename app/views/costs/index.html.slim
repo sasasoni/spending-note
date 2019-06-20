@@ -17,7 +17,7 @@ table.table.table-hover
         tr
           td= link_to cost.name, cost
           td= cost.expenditure
-          td= cost.item.name
+          td= @items[cost.item_id-1]
           td= cost.paid_date
           td= cost.demand? ? "〇" : "-"
           td

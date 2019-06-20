@@ -71,3 +71,7 @@ gem 'devise'
 
 # jquery
 gem 'jquery-rails'
+
+gem 'chart-js-rails'
+
+gem 'webpacker'

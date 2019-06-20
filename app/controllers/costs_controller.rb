@@ -1,6 +1,8 @@
 class CostsController < ApplicationController
   def index
+    @items = Item.all.pluck(:name)
     @costs = current_user.costs.latest
+    # @costs = current_user.costs.latest.joins(:item).select('costs.*, items.name AS item_name')
   end
 
   def show
@@ -47,9 +49,9 @@ class CostsController < ApplicationController
   def survey
     # 5/25/00:00~6/24/23:59は6月分として集計したい
     # request=>costs/survey?year=2019&month=6
-    year = params[:year] || Time.current.year
-    month = params[:month] || Time.current.month
-    @date = Time.zone.local(year, month)
+    @year = params[:year] || Time.current.year
+    @month = params[:month] || Time.current.month
+    @date = Time.zone.local(@year, @month)
     # begin
     #   @date = Time.zone.local(params[:year], params[:month])
     # rescue
@@ -64,6 +66,10 @@ class CostsController < ApplicationController
     # @date = raw_date >= raw_date.beginning_of_month.advance(days: 24) ? raw_date.next_month : raw_date
     @costs = current_user.costs.period(@date)
     @total_cost = @costs.sum(:expenditure)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   private
