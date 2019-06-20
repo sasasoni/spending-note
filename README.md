@@ -14,7 +14,9 @@ Before put this command, need to start database.
 ### start database
 
 `$ sudo service postgresql start`
-password: soni
+password: \*\*\*\*
+
+<!-- sasa -> ???? -->
 
 ### job scheduling
 
