@@ -8,6 +8,7 @@ table.table.table-hover
     tr
       th= Cost.human_attribute_name(:name)
       th= Cost.human_attribute_name(:expenditure)
+      th= Cost.human_attribute_name(:item)
       th= Cost.human_attribute_name(:paid_date)
       th= Cost.human_attribute_name(:demand)
       th
@@ -16,6 +17,7 @@ table.table.table-hover
         tr
           td= link_to cost.name, cost
           td= cost.expenditure
+          td= cost.item.name
           td= cost.paid_date
           td= cost.demand? ? "〇" : "-"
           td

@@ -8,6 +8,9 @@ table.table.table-hover
     th= Cost.human_attribute_name(:name)
     td= @cost.name
   tr
+    th= Cost.human_attribute_name(:item)
+    td= @cost.item.name
+  tr
     th= Cost.human_attribute_name(:expenditure)
     td
       |￥

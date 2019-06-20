@@ -9,6 +9,8 @@ class CostsController < ApplicationController
 
   def new
     @cost = Cost.new
+    # [["食費", "1"],["趣味", "2"]]
+    # @items = Item.all.pluck(:name, :id)
   end
 
   def create
@@ -71,7 +73,8 @@ class CostsController < ApplicationController
       :name,
       :expenditure,
       :paid_date,
-      :demand
+      :demand,
+      :item_id
     )
   end
 end

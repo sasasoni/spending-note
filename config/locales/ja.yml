@@ -9,6 +9,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       cost: "コスト"
+      item: "費目"
     attributes:
       cost:
         id: "ID"
@@ -17,6 +18,9 @@ ja:
         paid_date: "支払い日"
         demand: "請求"
         created_at: "登録日"
+        item: "費目"
+      item:
+        name: "費目"
   date:
     abbr_day_names:
       - 日

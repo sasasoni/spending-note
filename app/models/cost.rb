@@ -1,6 +1,6 @@
 class Cost < ApplicationRecord
   belongs_to :user
-  belongs_to :item
+  belongs_to :item # NOT NULLが自動で付く
 
   validates :user_id, presence: true
   validates :name, presence: true

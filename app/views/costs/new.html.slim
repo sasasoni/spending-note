@@ -17,12 +17,22 @@ h1 経費の新規登録
     = f.label :expenditure
     = f.text_field :expenditure, class: "form-control", id: "cost_expenditure"
 
-  = f.label :paid_date
-  .form-inline
-    = f.date_select :paid_date, { start_year: Time.current.year, end_year: Time.current.year + 1, use_month_number: true }, class: "form-control date-select"
+  .form-group
+    = f.label :paid_date
+    .form-inline
+      = f.date_select :paid_date, { start_year: Time.current.year, end_year: Time.current.year + 1, use_month_number: true }, class: "form-control"
 
-  .custom-control.custom-checkbox.mb-2
-    = f.check_box :demand, checked: true, class: "custom-control-input"
-    = f.label :demand, "請求する", class: "custom-control-label"
+  .form-group
+    = f.label :item_id, "費目名"
+    / Hash[].pluck(:name, :id)=>[["食費", "1"],["趣味", "2"]...]
+    / Hash[].map{|i| [i.name, i.id]}と同じ
+    / []の中の左側は画面上に表示する文字で、右側はデータベースに登録する値
+    / option(:include_blankや:prompt)は第3引数に設定し、html_options(classやstyle)は第4引数に設定
+    = f.select :item_id, Item.all.pluck(:name, :id), {prompt: "選択してください"}, {class: "form-control"}
+
+  .form-group
+    .custom-control.custom-checkbox
+      = f.check_box :demand, checked: true, class: "custom-control-input"
+      = f.label :demand, "請求する", class: "custom-control-label"
 
   = f.submit "登録", class: "btn btn-primary"
