@@ -10,6 +10,6 @@ items = %w(食費 趣味 本 その他)
 
 items.each do |item|
   Item.create!(
-    name: item
+    item_name: item
   )
 end
