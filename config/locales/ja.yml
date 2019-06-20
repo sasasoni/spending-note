@@ -19,6 +19,7 @@ ja:
         demand: "請求"
         created_at: "登録日"
         item: "費目"
+        memo: "メモ"
       item:
         name: "費目"
   date:

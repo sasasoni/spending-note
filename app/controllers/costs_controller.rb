@@ -86,7 +86,8 @@ class CostsController < ApplicationController
       :expenditure,
       :paid_date,
       :demand,
-      :item_id
+      :item_id,
+      :memo
     )
   end
 

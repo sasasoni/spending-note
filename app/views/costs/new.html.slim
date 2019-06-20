@@ -35,4 +35,8 @@ h1 経費の新規登録
       = f.check_box :demand, checked: true, class: "custom-control-input"
       = f.label :demand, "請求する", class: "custom-control-label"
 
+  .form-group
+    = f.label :memo
+    = f.text_area :memo, rows: 5, class: "form-control", placeholder: "200文字まで入力可能です"
+
   = f.submit "登録", class: "btn btn-primary"

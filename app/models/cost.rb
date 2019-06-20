@@ -8,6 +8,7 @@ class Cost < ApplicationRecord
     { only_integer: true, greater_than_or_equal_to: 0 }
   validates :paid_date, presence: true
   validates :demand, inclusion: { in: [true, false] }
+  validates :memo, length: { maximum: 200 }
 
   scope :latest, -> { order(created_at: :desc) }
   scope :period, -> (date) do

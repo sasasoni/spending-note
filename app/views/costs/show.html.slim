@@ -16,6 +16,9 @@ table.table.table-hover
       |￥
       = @cost.expenditure
   tr
+    th= Cost.human_attribute_name(:memo)
+    td= @cost.memo
+  tr
     th= Cost.human_attribute_name(:paid_date)
     td= @cost.paid_date.strftime("%Y年%m月%d日")
   tr
