@@ -1,5 +1,5 @@
 class DemandActivationsController < ApplicationController
-  before_action :login_required
+  before_action :login_required, only: [:new, :create]
 
   def new
     @user = current_user
