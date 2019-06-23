@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :costs do
     get 'survey', on: :collection
   end
+
+  get '/help', to: 'static_pages#help'
+  get '/contact', to: 'static_pages#contact'
 end
