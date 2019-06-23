@@ -1,0 +1,48 @@
+h1 請求する支出の確認
+
+h5
+  | 請求先メールアドレス:
+  = @user.demand_email
+
+h5 
+  | 最終請求日時:
+  - if @user.demanded_at
+    = @user.demanded_at
+  - else
+    span.badge.badge-info 初めての請求
+
+- if @costs.any?
+  h5.mb-3
+      |合計支出:
+      = @total_cost
+      |円
+
+  .mb-3
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th= Cost.human_attribute_name(:name)
+        th= Cost.human_attribute_name(:expenditure)
+        th= Item.human_attribute_name(:name)
+        th= Cost.human_attribute_name(:paid_date)
+        th= Cost.human_attribute_name(:demand)
+      tbody
+        - @costs.each do |cost|
+          tr
+            td= link_to cost.name, cost
+            td= cost.expenditure
+            td= @items[cost.item_id-1]
+            td= cost.paid_date
+            td= cost.demand? ? "〇" : "-"
+
+  = form_with url: demands_path, method: "post", local: true do |f|
+    .form-group
+      .custom-control.custom-checkbox
+        = f.check_box :demand, checked: true, class: "custom-control-input"
+        = f.label :demand, "自分にもメールを送る", class: "custom-control-label"
+      
+    = f.submit "請求メールを送る!", class: "btn btn-primary", data: { confirm: "#{@user.demand_email}宛に合計#{@total_cost}円を請求します。よろしいですか？" }
+
+  / = link_to "請求メールを送る!", demands_path, method: "post", class: "btn btn-primary", data: { confirm: "#{@user.demand_email}宛に合計#{@total_cost}円を請求します。よろしいですか？" }
+- else
+  p.alert.alert-info 請求できるものはありません

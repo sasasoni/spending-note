@@ -1,0 +1,27 @@
+h1
+  = @user.demand_email
+  | 様
+
+.
+  = @user.email
+  | 様から請求が来ましたのでご確認ください
+
+h5.mb-3
+    |合計支出:
+    = @total_cost
+    |円
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Cost.human_attribute_name(:name)
+      th= Cost.human_attribute_name(:expenditure)
+      th= Item.human_attribute_name(:name)
+      th= Cost.human_attribute_name(:paid_date)
+    tbody
+      - @costs.each do |cost|
+        tr
+          td= cost.name
+          td= cost.expenditure
+          td= @items[cost.item_id-1]
+          td= cost.paid_date

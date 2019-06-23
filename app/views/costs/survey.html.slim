@@ -22,7 +22,7 @@ h1.page-header year="#{@year}" month="#{@month}"
       tr
         th= sort_link(@q, :name) 
         th= sort_link(@q, :expenditure)
-        th= sort_link(@q, :item, "費目")
+        th= sort_link(@q, :item_id, "費目")
         th= sort_link(@q, :paid_date)
         th= sort_link(@q, :demand)
         / th
@@ -44,3 +44,5 @@ h1.page-header year="#{@year}" month="#{@month}"
   = javascript_pack_tag 'survey-show-chart'
 - else
   .alert.alert-info この月の支出は登録されていません。
+
+= link_to "請求メールを送る", new_demand_path, class: "btn btn-info mt-3"

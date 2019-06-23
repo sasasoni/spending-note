@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :costs, dependent: :destroy
 
-  attr_accessor :demand_token
+  attr_accessor :demand_token, :demand_mail_with_myself
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -24,6 +24,11 @@ class User < ApplicationRecord
 
   def send_demand_activation_email
     UserMailer.demand_activation(self).deliver_now
+  end
+
+  def send_demand_email
+    UserMailer.demand(self).deliver_now
+    self.update_attributes(demanded_at: Time.current)
   end
 
   def authenticated?(attribute, token)

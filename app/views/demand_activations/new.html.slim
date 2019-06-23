@@ -6,11 +6,11 @@ h1 請求の作成
     = @user.demand_email
     | 」です
 
-= form_with model: @user,url: demand_activations_path, method: "post", local: true do |t|
+= form_with model: @user,url: demand_activations_path, method: "post", local: true do |f|
 
-  = t.hidden_field :id, value: @user.id
+  = f.hidden_field :id, value: @user.id
   .form-group
-    = t.label :demand_email, "請求先のメールアドレス"
-    = t.email_field :demand_email, class: "form-control"
+    = f.label :demand_email, "請求先のメールアドレス"
+    = f.email_field :demand_email, class: "form-control"
 
-  = t.submit "送信", class: "btn btn-primary"
+  = f.submit "送信", class: "btn btn-primary"
