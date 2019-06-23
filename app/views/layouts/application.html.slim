@@ -11,7 +11,7 @@ html
   body
     = render 'layouts/header'
 
-    .container
+    .container.padding
       - if flash.notice.present?
         p.alert.alert-success= notice
       - if flash.alert.present?

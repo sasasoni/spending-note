@@ -9,21 +9,25 @@ h1 経費の新規登録
       li.text-danger.ml-3= message
 
 = form_with model: @cost, local: true do |f|
+  p.text-danger
+    i.fas.fa-exclamation-circle.mr-1
+    | 赤字は必須項目です
+
   .form-group
-    = f.label :name
+    = f.label :name, class: "text-danger"
     = f.text_field :name, class: "form-control", id: "cost_name"
 
   .form-group
-    = f.label :expenditure
+    = f.label :expenditure, class: "text-danger"
     = f.text_field :expenditure, class: "form-control", id: "cost_expenditure"
 
   .form-group
-    = f.label :paid_date
+    = f.label :paid_date, class: "text-danger"
     .form-inline
       = f.date_select :paid_date, { start_year: Time.current.year, end_year: Time.current.year + 1, use_month_number: true }, class: "form-control"
 
   .form-group
-    = f.label :item_id, "費目名"
+    = f.label :item_id, "費目名", class: "text-danger"
     / Hash[].pluck(:name, :id)=>[["食費", "1"],["趣味", "2"]...]
     / Hash[].map{|i| [i.name, i.id]}と同じ
     / []の中の左側は画面上に表示する文字で、右側はデータベースに登録する値

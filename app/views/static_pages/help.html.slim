@@ -1,0 +1,79 @@
+.row.welcome.text-center.padding
+  .col-12
+    h1.display-5 Help
+  hr
+
+h2.mb-3 Spending-Noteについて
+
+.row.padding
+  .col-12
+    p
+      | 支出を記録する家計簿アプリです。メールアドレスを登録すれば親に記録した食費や本代などをメールで請求できます。
+
+h2.mb-3 使い方
+
+.row.padding
+  .col-md-6
+    p
+      | 経費一覧、支出データのページにある新規登録ボタンから支出の新規登録ができます。
+      | 項目をクリックしたら、昇順・降順にソートできます。
+  .col-md-6
+    = image_tag("help/show_sample.png", alt: "show_sample", class: "help")
+
+.row.padding
+  .col-md-6
+    p
+      | 経費登録時に「請求する」のチェックボタンを入れた場合、請求メールを送るときに取り出すデータとして設定することができます。
+      | 自己負担の経費にはチェックを外すと請求時に除外できます。
+  .col-md-6
+    = image_tag("help/show_sample3.png", alt: "show_sample", class: "help")
+
+.row.padding
+  .col-md-6
+    p
+      | 支出データでは、一か月(1日~最終日まで)の合計金額が確認できます。また、費目の内訳がグラフで見ることができます。
+  .col-md-6
+    = image_tag("help/show_sample2.png", alt: "show_sample", class: "help")
+
+h4.mb-3 請求の方法
+
+.row.padding
+  .col-md-6
+    p
+      | 請求には、請求先メールアドレスを登録する必要があります。
+      = link_to "こちらから登録ができます", new_demand_activation_path, class: "item-link"
+    p
+      | 請求先メールアドレスを送信すると、そのアドレス宛に認証メールが届きます。
+      | メール内のリンクをクリックして認証を有効化してください。
+    p.small
+      | ※使用しているメールサーバの仕様によってメールが届くのに若干時間がかかるかもしれません。。。
+  .col-md-6
+    = image_tag("help/show_sample4.png", alt: "show_sample", class: "help")
+
+.row.padding
+  .col-md-6
+    p
+      | 経費一覧、支出データのページの下にある「請求メールを送る」ボタンを押すと、請求するデータの確認ができます。
+      | 最終請求日以降に登録された、請求をする経費データが表示表示されます。
+      | 間違いがなければ下の送るボタンを押して送信できます。
+    p
+      | また、「自分にもメールを送る」チェックを付けると、自分のメールアドレス宛にも請求メールが届きます。
+  .col-md-6
+    = image_tag("help/show_sample5.png", alt: "show_sample", class: "help")
+
+h2.mb-3 お問い合わせ
+
+.row
+  .col-12
+    p
+      | 質問、ご要望、バグ報告がありましたら
+      br
+      | Twitter:
+      a[href="https://twitter.com/sasanium" target="_blank"]
+        | @sasanium
+      br
+      | または
+      | email:
+      a[href="mailto:sasasonium@gmail.com"]
+        | sasasonium@gmail.com
+      | までお送りください。Twitterのが早く反応します。
