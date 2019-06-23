@@ -8,15 +8,17 @@ header.stickey-top
       .collapse.navbar-collapse#navbarResponsive
         ul.navbar-nav.ml-auto
           li.nav-item
-            = link_to "Home", root_url, class: "nav-link"
+            = link_to "ホーム", root_url, class: "nav-link"
           li.nav-item
-            = link_to "Spending", costs_path, class: "nav-link"
+            = link_to "経費一覧", costs_path, class: "nav-link"
           li.nav-item
-            = link_to "Note", survey_costs_path, class: "nav-link"
+            = link_to "支出データ", survey_costs_path, class: "nav-link"
+          li.nav-item
+            = link_to "請求メール", new_demand_path, class: "nav-link"
           - if user_signed_in?
             li.nav-item.dropdown
               a.nav-link.dropdown-toggle#navbar-Dropdown href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                | Account
+                | アカウント
               .dropdown-menu aria-labelledby="navbarDropdown"
                 = link_to "プロフィール", edit_user_registration_path, class: "dropdown-item"
                 .dropdown-divider
@@ -27,4 +29,4 @@ header.stickey-top
             li.nav-item
               = link_to "ログイン", new_user_session_path, class: "nav-link"
           li.nav-item
-            = link_to "About", "#", class: "nav-link"
+            = link_to "ヘルプ", help_path, class: "nav-link"
