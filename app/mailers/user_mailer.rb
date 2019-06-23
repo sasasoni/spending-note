@@ -1,12 +1,11 @@
 class UserMailer < ApplicationMailer
-  default from: "spending-note@mail.com"
+  default from: "noreply@spending-note.com"
 
   def demand_activation(user)
     @user = user
     mail(
       subject: "Spending-Note 請求認証確認メール",
-      to: user.demand_email,
-      from: "spending-note@mail.com"
+      to: user.demand_email
     )
   end
 
@@ -22,8 +21,7 @@ class UserMailer < ApplicationMailer
     end
     mail(
       subject: "Spending-Note 請求メール",
-      to: send_address,
-      from: "spending-note@mail.com"
+      to: send_address
     )
   end
 
