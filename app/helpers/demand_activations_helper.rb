@@ -1,0 +1,2 @@
+module DemandActivationsHelper
+end

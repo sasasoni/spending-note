@@ -1,0 +1,5 @@
+= @user.email
+| から請求の宛先の確認メールが来ました。
+. お間違いなければ、以下のURLにアクセスして認証してください
+
+= edit_demand_activation_url(@user.demand_token, email: @user.email)

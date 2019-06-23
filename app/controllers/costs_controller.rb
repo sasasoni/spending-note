@@ -91,7 +91,8 @@ class CostsController < ApplicationController
     )
   end
 
-  def login_required
-    redirect_to new_user_session_path, notice: "ログインしてください" unless current_user
-  end
+  # application.rbに移行
+  # def login_required
+  #   redirect_to new_user_session_path, notice: "ログインしてください" unless current_user
+  # end
 end
