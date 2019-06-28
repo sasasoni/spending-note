@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total_cost: 1
+  approved: false
+  memo: MyText
+
+two:
+  total_cost: 1
+  approved: false
+  memo: MyText

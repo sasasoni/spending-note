@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :costs, dependent: :destroy
+  has_many :demands, dependent: :destroy
 
   attr_accessor :demand_token, :demand_mail_with_myself
 

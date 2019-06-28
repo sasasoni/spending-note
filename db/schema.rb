@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_22_160310) do
+ActiveRecord::Schema.define(version: 2019_06_28_075013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2019_06_22_160310) do
     t.index ["item_id"], name: "index_costs_on_item_id"
     t.index ["paid_date"], name: "index_costs_on_paid_date"
     t.index ["user_id"], name: "index_costs_on_user_id"
+  end
+
+  create_table "demands", force: :cascade do |t|
+    t.integer "total_cost", null: false
+    t.boolean "approved", null: false
+    t.text "memo"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_demands_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -55,4 +65,5 @@ ActiveRecord::Schema.define(version: 2019_06_22_160310) do
 
   add_foreign_key "costs", "items"
   add_foreign_key "costs", "users"
+  add_foreign_key "demands", "users"
 end
