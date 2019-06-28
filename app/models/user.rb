@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   def send_demand_email
     UserMailer.demand(self).deliver_now
+    # record_demand
     self.update_attributes(demanded_at: Time.current)
   end
 

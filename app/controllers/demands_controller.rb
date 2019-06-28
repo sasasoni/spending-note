@@ -12,6 +12,7 @@ class DemandsController < ApplicationController
   def create
     @user = current_user
     @user.demand_mail_with_myself = params[:demand] == '1' ? true : false
+    Demand.record(@user)
     if @user.demand_email && @user.send_demand_email
       flash[:notice] = "請求メールを送りました"
       redirect_to root_url
