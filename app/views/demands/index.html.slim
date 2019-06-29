@@ -12,6 +12,7 @@ table.table.table-hover
       th= Demand.human_attribute_name(:created_at)
       th= Demand.human_attribute_name(:total_cost)
       th= Demand.human_attribute_name(:approved)
+      th= Demand.human_attribute_name(:memo)
     tbody
       - @demands.each do |demand|
         tr
@@ -22,3 +23,4 @@ table.table.table-hover
           td= link_to demand.created_at, guest_or_user_demand_path(@guest, demand)
           td= demand.total_cost
           td= demand.approved? ? "承認済み" : "未承認"
+          td= truncate demand.memo, length: 20
