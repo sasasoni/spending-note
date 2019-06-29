@@ -42,8 +42,6 @@ h1.page-header year="#{@year}" month="#{@month}"
               / td
                 = link_to "編集", edit_cost_path(cost), class: "btn btn-success mr-3"
                 = link_to "削除", cost_path(cost), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"
-
-
   .
     canvas#surveyChart width="900"
   = javascript_pack_tag 'survey-show-chart'

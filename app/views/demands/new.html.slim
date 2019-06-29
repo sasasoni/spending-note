@@ -20,22 +20,23 @@ h5
       |円
 
   .mb-3
-  table.table.table-hover
-    thead.thead-default
-      tr
-        th= Cost.human_attribute_name(:name)
-        th= Cost.human_attribute_name(:expenditure)
-        th= Item.human_attribute_name(:name)
-        th= Cost.human_attribute_name(:paid_date)
-        th= Cost.human_attribute_name(:demand)
-      tbody
-        - @costs.each do |cost|
-          tr
-            td= link_to cost.name, cost
-            td= cost.expenditure
-            td= @items[cost.item_id-1]
-            td= cost.paid_date
-            td= cost.demand? ? "〇" : "-"
+  .table-responsive
+    table.table.table-hover.text-nowrap
+      thead.thead-default
+        tr
+          th= Cost.human_attribute_name(:name)
+          th= Cost.human_attribute_name(:expenditure)
+          th= Item.human_attribute_name(:name)
+          th= Cost.human_attribute_name(:paid_date)
+          th= Cost.human_attribute_name(:demand)
+        tbody
+          - @costs.each do |cost|
+            tr
+              td= link_to cost.name, cost
+              td= cost.expenditure
+              td= @items[cost.item_id-1]
+              td= cost.paid_date
+              td= cost.demand? ? "〇" : "-"
 
   = form_with url: demands_path, method: "post", local: true do |f|
     .form-group
