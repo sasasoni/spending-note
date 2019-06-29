@@ -1,0 +1,24 @@
+= provide(:title, "Demand list")
+
+h1 請求履歴
+
+h5
+  = @user.email
+  | さんの請求履歴
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Demand.human_attribute_name(:created_at)
+      th= Demand.human_attribute_name(:total_cost)
+      th= Demand.human_attribute_name(:approved)
+    tbody
+      - @demands.each do |demand|
+        tr
+          / - if @guest
+          /   td= link_to demand.created_at, demand_path(demand, user: @guest[:user], key: @guest[:key])
+          / - else
+          /   td= link_to demand.created_at, demand
+          td= link_to demand.created_at, guest_or_user_demand_path(@guest, demand)
+          td= demand.total_cost
+          td= demand.approved? ? "承認済み" : "未承認"

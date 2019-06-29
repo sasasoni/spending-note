@@ -20,7 +20,7 @@ h2
       | 請求先メールアドレス
       - unless @user.demand_activated?
         .alert.alert-danger 有効化されていません！請求先メールアドレスに送られた認証リンクから認証をしてください。
-      input.form-control type="text" placeholder="#{@user.demand_email}" readonly=""
+      input.form-control type="text" value="#{@user.demand_email}" readonly=""
       = link_to "請求先を変える", new_demand_activation_path, class: "nav-link"
   - else
     .alert.alert-info

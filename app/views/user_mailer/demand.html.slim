@@ -25,3 +25,11 @@ table.table.table-hover
           td= cost.expenditure
           td= @items[cost.item_id-1]
           td= cost.paid_date
+
+.
+  | 支払いが完了しましたら、以下のURLをクリックすると支払い済みのスタンプがつきます。
+= link_to "支払い済みにする", stamp_demand_url(@demand , user: @user.id, key: @user.demand_digest)
+
+.
+  | また、こちらのURLから、今までの請求履歴を見ることができます。
+= link_to "請求履歴をみる", demands_url(user: @user.id, key: @user.demand_digest)

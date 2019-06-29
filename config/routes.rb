@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'static_pages#home'
   devise_for :users
   resources :demand_activations, only: [:new, :create, :edit]
-  resources :demands, only: [:new, :create]
+  resources :demands, only: [:index, :show, :new, :create, :edit, :update] do
+    get 'stamp', on: :member
+  end
   resources :costs do
     get 'survey', on: :collection
   end

@@ -21,6 +21,7 @@ header.stickey-top
                 | アカウント
               .dropdown-menu aria-labelledby="navbarDropdown"
                 = link_to "プロフィール", edit_user_registration_path, class: "dropdown-item"
+                = link_to "請求履歴", demands_path, class: "dropdown-item"
                 .dropdown-divider
                 = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item"
           - else

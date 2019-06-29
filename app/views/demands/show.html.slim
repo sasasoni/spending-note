@@ -1,0 +1,28 @@
+= provide(:title, "Demand")
+
+h1 請求履歴の詳細
+
+.nav.justify-content-end
+  = link_to "一覧", guest_or_user_demands_path(@guest), class: "nav-link"
+
+h5
+  | 請求先メールアドレス:
+  = @user.demand_email
+
+h5 請求日
+
+table.table.table-hover
+  tr
+    th= Demand.human_attribute_name(:created_at)
+    td= @demand.created_at
+  tr
+    th= Demand.human_attribute_name(:total_cost)
+    td= @demand.total_cost
+  tr
+    th= Demand.human_attribute_name(:approved)
+    td= @demand.approved? ? "承認済み" : "未承認"
+  tr
+    th= Demand.human_attribute_name(:memo)
+    td= @demand.memo
+
+= link_to "メモの編集", guest_or_user_edit_demand_path(@guest, @demand), class: "btn btn-primary"

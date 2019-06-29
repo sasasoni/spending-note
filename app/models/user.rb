@@ -27,8 +27,8 @@ class User < ApplicationRecord
     UserMailer.demand_activation(self).deliver_now
   end
 
-  def send_demand_email
-    UserMailer.demand(self).deliver_now
+  def send_demand_email(demand:)
+    UserMailer.demand(self, demand: demand).deliver_now
     # record_demand
     self.update_attributes(demanded_at: Time.current)
   end
@@ -41,6 +41,10 @@ class User < ApplicationRecord
 
   def demand_activate
     update_columns(demand_activated: true)
+  end
+
+  def demand_digest_auth(key)
+    self.demand_digest == key
   end
 
   private

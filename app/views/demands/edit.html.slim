@@ -1,0 +1,29 @@
+= provide(:title, "Memo edit")
+
+h1 請求履歴メモの編集
+
+.nav.justify-content-end
+  = link_to "一覧", guest_or_user_demands_path(@guest), class: "nav-link"
+
+- if @demand.errors.present?
+  ul#error_explanation.elert.alert-danger
+  - @demand.errors.full_messages.each do |message|
+    li.text-danger.ml-3= message
+
+table.table.table-hover
+  tr
+    th= Demand.human_attribute_name(:created_at)
+    td= @demand.created_at
+  tr
+    th= Demand.human_attribute_name(:total_cost)
+    td= @demand.total_cost
+  tr
+    th= Demand.human_attribute_name(:approved)
+    td= @demand.approved? ? "承認済み" : "未承認"
+
+= form_with model: @demand, url: guest_or_user_demand_path(@guest, @demand), local: true do |f|
+  .form-group
+    = f.label :memo
+    = f.text_area :memo, rows: 5, class: "form-control", placeholder: "200文字まで入力可能です"
+  
+  = f.submit "編集", class: "btn btn-primary"
