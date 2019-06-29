@@ -43,10 +43,10 @@ class DemandsController < ApplicationController
   def update
     user = current_user_or_guest
     @demand = user.demands.find(params[:id])
-    guest = is_guest? ? {user: user.id, key: user.demand_digest} : nil
+    @guest = is_guest? ? {user: user.id, key: user.demand_digest} : nil
     if @demand.update(demand_memo_param)
       flash[:notice] = "編集しました"
-      redirect_to helpers.guest_or_user_demands_path(guest)
+      redirect_to helpers.guest_or_user_demand_path(@guest, @demand)
     else
       render :edit
     end
