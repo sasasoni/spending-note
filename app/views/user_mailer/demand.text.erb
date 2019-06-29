@@ -13,6 +13,9 @@
   <%= cost.name %> | <%= cost.expenditure %> | <%= @items[cost.item_id-1] %> | <%= cost.paid_date %> | <%= truncate cost.memo, length: 20 %>
 <% end %>
 
+備考欄:
+<%= @demand.memo %>
+
 ------------------------------------------------------
 内容を確認しましたら、以下のURLをクリックすると承認済みのスタンプがつきます。
 <%= approve_demand_url(@demand , user: @user.id, key: @user.demand_digest) %>

@@ -6,13 +6,13 @@ h1
   = @user.email
   | 様から請求が来ましたのでご確認ください
 
-h5.mb-3
+h5
     |合計支出:
     = @total_cost
     |円
 
-table.table.table-hover
-  thead.thead-default
+table
+  thead
     tr
       th= Cost.human_attribute_name(:name)
       th= Cost.human_attribute_name(:expenditure)
@@ -27,7 +27,9 @@ table.table.table-hover
           td= @items[cost.item_id-1]
           td= cost.paid_date
           td= truncate cost.memo, length: 20
-
+br
+p 備考欄:
+p= @demand.memo
 br
 .
   | 内容を確認しましたら、以下のリンクをクリックすると承認済みのスタンプがつきます。

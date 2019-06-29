@@ -24,7 +24,7 @@ class DemandsController < ApplicationController
 
   def create
     @user = current_user
-    @user.demand_mail_with_myself = params[:demand] == '1' ? true : false
+    @user.demand_mail_with_myself = params[:demand][:demand_mail_with_myself] == '1' ? true : false
     # demand = Demand.record(@user)
     demand = @user.demands.build(demand_params)
     if demand.save && @user.demand_email && @user.send_demand_email(demand: demand)
@@ -35,7 +35,7 @@ class DemandsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     user = current_user_or_guest
     @demand = user.demands.find(params[:id])

@@ -45,8 +45,8 @@ h5
       = f.text_area :memo, rows: 5, class: "form-control", placeholder: "200文字まで入力可能です"
     .form-group
       .custom-control.custom-checkbox
-        = f.check_box :demand, checked: true, class: "custom-control-input"
-        = f.label :demand, "自分にもメールを送る", class: "custom-control-label"
+        = f.check_box :demand_mail_with_myself, checked: true, class: "custom-control-input"
+        = f.label :demand_mail_with_myself, "自分にもメールを送る", class: "custom-control-label"
       
     = f.submit "請求メールを送る!", class: "btn btn-primary", data: { confirm: "#{@user.demand_email}宛に合計#{@total_cost}円を請求します。よろしいですか？" }
 
