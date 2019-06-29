@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :demand_activations, only: [:new, :create, :edit]
   resources :demands, only: [:index, :show, :new, :create, :edit, :update] do
-    get 'stamp', on: :member
+    get 'approve', on: :member
   end
   resources :costs do
     get 'survey', on: :collection

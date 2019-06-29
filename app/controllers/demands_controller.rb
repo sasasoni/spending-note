@@ -52,16 +52,17 @@ class DemandsController < ApplicationController
     end
   end
 
-  def stamp
+  def approve
     user = User.find(params[:user])
     key = params[:key]
     demand = Demand.find(params[:id])
-    if user.demand_digest_auth(key)
+    guest = is_guest? ? {user: user.id, key: user.demand_digest} : nil
+    if user.demand_digest_auth(key) && !demand.approved?
       demand.approve
       flash[:notice] = "認証しました"
-      redirect_to root_url
+      redirect_to helpers.guest_or_user_demands_path(guest)
     else
-      flash[:danger] = "エラーが発生しました"
+      flash[:alert] = "エラーが発生しました"
       redirect_to root_url
     end
   end
