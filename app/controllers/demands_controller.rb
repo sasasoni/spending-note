@@ -15,7 +15,7 @@ class DemandsController < ApplicationController
 
   def new
     @user = current_user
-    return redirewct_to new_demand_activation_url, alert: "請求先メールアドレスが設定(有効化)されていません" unless @user.demand_activated
+    return redirect_to new_demand_activation_url, alert: "請求先メールアドレスが設定(有効化)されていません" unless @user.demand_activated
     @items = Item.all.pluck(:name)
     @costs = @user.costs.take_demands(@user).order(paid_date: :desc)
     @total_cost = @costs.sum(:expenditure)
