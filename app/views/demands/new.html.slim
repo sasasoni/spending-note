@@ -38,7 +38,11 @@ h5
               td= cost.paid_date
               td= cost.demand? ? "〇" : "-"
 
-  = form_with url: demands_path, method: "post", local: true do |f|
+  = form_with model: @demand, url: demands_path, method: "post", local: true do |f|
+    = f.hidden_field :total_cost, value: @total_cost
+    .form-group
+      = f.label :memo
+      = f.text_area :memo, rows: 5, class: "form-control", placeholder: "200文字まで入力可能です"
     .form-group
       .custom-control.custom-checkbox
         = f.check_box :demand, checked: true, class: "custom-control-input"

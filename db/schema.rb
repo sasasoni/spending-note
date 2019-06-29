@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 2019_06_29_133933) do
 
   create_table "demands", force: :cascade do |t|
     t.integer "total_cost", null: false
-    t.boolean "approved", null: false
+    t.boolean "approved", default: false, null: false
     t.text "memo"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "received", null: false
+    t.boolean "received", default: false, null: false
     t.index ["user_id"], name: "index_demands_on_user_id"
   end
 
