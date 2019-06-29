@@ -19,7 +19,9 @@ h1 経費一覧
         - @costs.each do |cost|
           tr
             td= link_to cost.name, cost
-            td= cost.expenditure
+            td
+              | ￥
+              = cost.expenditure
             td= @items[cost.item_id-1]
             td= cost.paid_date
             td= cost.demand? ? "〇" : "-"
@@ -27,4 +29,4 @@ h1 経費一覧
               = link_to "編集", edit_cost_path(cost), class: "btn btn-success mr-3"
               = link_to "削除", cost_path(cost), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"
 
-  = link_to "請求メールを送る", new_demand_path, class: "btn btn-info mt-3"
+= link_to "請求メールを送る", new_demand_path, class: "btn btn-info mt-3"

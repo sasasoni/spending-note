@@ -23,7 +23,9 @@ h5
             / - else
             /   td= link_to demand.created_at, demand
             td= link_to demand.created_at.strftime("%Y/%m/%d %H:%M"), guest_or_user_demand_path(@guest, demand)
-            td= demand.total_cost
+            td
+              | ￥
+              = demand.total_cost
             td= truncate demand.memo, length: 10
             td
               = render partial: 'approve_status', locals: { demand: demand, user: @user }
