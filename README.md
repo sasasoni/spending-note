@@ -27,3 +27,11 @@ start Redis
 
 start sidekiq
 `$ bundle exec sidekiq`
+
+### when using heroku
+
+#### tip
+
+Database reset `$ heroku pg:reset DATABASE`
+migration `$ heroku run rails db:migrate`
+seed `$ heroku run rails db:seed`
