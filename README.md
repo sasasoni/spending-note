@@ -22,6 +22,7 @@ password: \*\*\*\*
 
 install Redis
 `$ sudo apt install redis-server`
+
 start Redis
 `$ redis-server`
 
@@ -33,5 +34,7 @@ start sidekiq
 #### tip
 
 Database reset `$ heroku pg:reset DATABASE`
+
 migration `$ heroku run rails db:migrate`
+
 seed `$ heroku run rails db:seed`
