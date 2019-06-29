@@ -11,7 +11,9 @@ h1 請求履歴の詳細
     p.card-text= @demand.created_at
 
     h5.card-title.mb-2= Demand.human_attribute_name(:total_cost)
-    p.card-text= @demand.total_cost
+    p.card-text
+      | ￥
+      = @demand.total_cost
 
     h5.card-title.mb-2= Demand.human_attribute_name(:approved)
     p.card-text= render partial: 'approve_status', locals: { demand: @demand, user: @user }
