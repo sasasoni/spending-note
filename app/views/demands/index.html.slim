@@ -6,23 +6,26 @@ h5
   = @user.email
   | さんの請求履歴
 
-table.table.table-hover
-  thead.thead-default
-    tr
-      th= Demand.human_attribute_name(:created_at)
-      th= Demand.human_attribute_name(:total_cost)
-      th= Demand.human_attribute_name(:approved)
-      th= Demand.human_attribute_name(:received)
-    tbody
-      - @demands.each do |demand|
-        tr
-          / - if @guest
-          /   td= link_to demand.created_at, demand_path(demand, user: @guest[:user], key: @guest[:key])
-          / - else
-          /   td= link_to demand.created_at, demand
-          td= link_to demand.created_at.strftime("%Y/%m/%d %H:%M"), guest_or_user_demand_path(@guest, demand)
-          td= demand.total_cost
-          td
-            = render partial: 'approve_status', locals: { demand: demand, user: @user }
-          td
-            = render partial: 'receive_status', locals: { demand: demand }
+.table-responsive
+  table.table.table-hover.text-nowrap
+    thead.thead-default
+      tr
+        th= Demand.human_attribute_name(:created_at)
+        th= Demand.human_attribute_name(:total_cost)
+        th= Demand.human_attribute_name(:memo)
+        th= Demand.human_attribute_name(:approved)
+        th= Demand.human_attribute_name(:received)
+      tbody
+        - @demands.each do |demand|
+          tr
+            / - if @guest
+            /   td= link_to demand.created_at, demand_path(demand, user: @guest[:user], key: @guest[:key])
+            / - else
+            /   td= link_to demand.created_at, demand
+            td= link_to demand.created_at.strftime("%Y/%m/%d %H:%M"), guest_or_user_demand_path(@guest, demand)
+            td= demand.total_cost
+            td= truncate demand.memo, length: 10
+            td
+              = render partial: 'approve_status', locals: { demand: demand, user: @user }
+            td
+              = render partial: 'receive_status', locals: { demand: demand }
