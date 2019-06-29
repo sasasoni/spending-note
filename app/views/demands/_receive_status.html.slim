@@ -1,0 +1,12 @@
+- if demand.received?
+  h5
+    span.badge.badge-success 受領済み
+- elsif !demand.approved?
+  h5
+    span.badge.badge-secondary disabled="" 未承認
+- elsif user_signed_in?
+  h5
+    = link_to "受領済みにする", receive_demand_path(demand), class: "badge badge-primary"
+- else
+  h5
+    span.badge.badge-secondary 未受領

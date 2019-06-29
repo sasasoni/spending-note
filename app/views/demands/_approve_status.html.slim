@@ -1,0 +1,9 @@
+- if demand.approved?
+  h5
+    span.badge.badge-success 承認済み
+- elsif user_signed_in?
+  h5
+    span.badge.badge-secondary 未承認
+- else
+  h5
+    = link_to "認証する", approve_demand_path(demand, user: user.id, key: user.demand_digest), class: "badge badge-primary"

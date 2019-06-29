@@ -29,7 +29,7 @@ class DemandsController < ApplicationController
       flash[:notice] = "請求メールを送りました"
       redirect_to root_url
     else
-      redirect_to root_url, alert: "エラーが発生しました。"
+      redirect_to root_url, alert: "エラーが発生しました"
     end
   end
   
@@ -56,26 +56,21 @@ class DemandsController < ApplicationController
     key = params[:key]
     demand = Demand.find(params[:id])
     guest = is_guest? ? {user: user.id, key: user.demand_digest} : nil
-    if user.demand_digest_auth(key) && !demand.approved?
+    # if user.demand_digest_auth(key) && !demand.approved?
+    if approve_checked?(user: user, key: key, demand: demand)
       demand.approve
       flash[:notice] = "認証しました"
       redirect_to helpers.guest_or_user_demands_path(guest)
-    else
-      flash[:alert] = "エラーが発生しました"
-      redirect_to root_url
     end
   end
 
   def receive
     user = current_user
     demand = user.demands.find(params[:id])
-    if !demand.received?
+    if receive_checked?(user: user, demand: demand)
       demand.receive
       flash[:notice] = "受領処理が正常に終わりました"
       redirect_to demands_url
-    else
-      flash[:alert] = "エラーが発生しました"
-      redirect_to root_url
     end
   end
 
@@ -102,5 +97,37 @@ class DemandsController < ApplicationController
 
   def is_guest?
     params[:user] && params[:key]
+  end
+
+  def approve_checked?(user:, key:, demand:)
+    if user.demand_digest_auth(key)
+      if !demand.approved?
+        true
+      else
+        flash[:alert] = "すでに承認済みです"
+        redirect_to root_url
+        false
+      end
+    else
+      flash[:alert] = "認証エラーが発生しました 認証キーが無効です"
+      redirect_to root_url
+      false
+    end
+  end
+
+  def receive_checked?(user:, demand:)
+    if !demand.received?
+      if demand.approved?
+        true
+      else
+        flash[:alert] = "まだ承認されていません"
+        redirect_to demands_url
+        false
+      end
+    else
+      flash[:alert] = "エラーが発生しました 受領済みです"
+      redirect_to demands_url
+      false
+    end
   end
 end

@@ -9,18 +9,16 @@ h1 請求履歴の詳細
   .card-body
     h5.card-title.mb-2= Demand.human_attribute_name(:created_at)
     p.card-text= @demand.created_at
+
     h5.card-title.mb-2= Demand.human_attribute_name(:total_cost)
     p.card-text= @demand.total_cost
+
     h5.card-title.mb-2= Demand.human_attribute_name(:approved)
-    p.card-text
-      - if @demand.approved?
-        h5
-          span.badge.badge-success 承認済み
-      - elsif user_signed_in?
-        h5
-          span.badge.badge-secondary 未承認
-      - else
-        = link_to "認証する", approve_demand_path(@demand , user: @user.id, key: @user.demand_digest), class: "btn btn-primary btn-sm"
+    p.card-text= render partial: 'approve_status', locals: { demand: @demand, user: @user }
+
+    h5.card-title.mb-2= Demand.human_attribute_name(:received)
+    p.card-text= render partial: 'receive_status', locals: { demand: @demand }
+    
     h5.card-title.mb-2= Demand.human_attribute_name(:memo)
     p.card-text= @demand.memo
 / table.table.table-hover

@@ -30,9 +30,9 @@ table.table.table-hover
 
 br
 .
-  | 内容を確認しましたら、以下のURLをクリックすると承認済みのスタンプがつきます。
+  | 内容を確認しましたら、以下のリンクをクリックすると承認済みのスタンプがつきます。
 = link_to "承認する", approve_demand_url(@demand , user: @user.id, key: @user.demand_digest)
 
 .
-  | また、こちらのURLから、今までの請求履歴を見ることができます。
+  | また、こちらのリンクから、今までの請求履歴を見ることができます。
 = link_to "請求履歴をみる", demands_url(user: @user.id, key: @user.demand_digest)

@@ -26,6 +26,7 @@ ja:
       demand:
         total_cost: "請求金額"
         approved: "認証状態"
+        received: "受領状態"
         memo: "メモ"
         created_at: "請求日時"
   date:
