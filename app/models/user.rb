@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   def send_demand_email(demand:)
     UserMailer.demand(self, demand: demand).deliver_now
+    UserMailer.mirror_demand(self, demand: demand).deliver_now if self.demand_mail_with_myself
     # record_demand
     self.update_attributes(demanded_at: Time.current)
   end

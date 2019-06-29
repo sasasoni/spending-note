@@ -11,8 +11,9 @@ table.table.table-hover
     tr
       th= Demand.human_attribute_name(:created_at)
       th= Demand.human_attribute_name(:total_cost)
-      th= Demand.human_attribute_name(:approved)
       th= Demand.human_attribute_name(:memo)
+      th= Demand.human_attribute_name(:approved)
+      th= Demand.human_attribute_name(:received)
     tbody
       - @demands.each do |demand|
         tr
@@ -20,7 +21,24 @@ table.table.table-hover
           /   td= link_to demand.created_at, demand_path(demand, user: @guest[:user], key: @guest[:key])
           / - else
           /   td= link_to demand.created_at, demand
-          td= link_to demand.created_at, guest_or_user_demand_path(@guest, demand)
+          td= link_to demand.created_at.strftime("%Y/%m/%d %H:%M"), guest_or_user_demand_path(@guest, demand)
           td= demand.total_cost
-          td= demand.approved? ? "承認済み" : "未承認"
           td= truncate demand.memo, length: 20
+          td
+            - if demand.approved?
+              h5
+                span.badge.badge-success 承認済み
+            - elsif user_signed_in?
+              h5
+                span.badge.badge-secondary 未承認
+            - else
+              = link_to "認証する", approve_demand_path(demand, user: @user.id, key: @user.demand_digest), class: "btn btn-primary btn-sm"
+          td
+            - if demand.received?
+              h5
+                span.badge.badge-success 受領済み
+            - elsif user_signed_in?
+              = link_to "受領済みにする", receive_demand_path(demand), class: "btn btn-primary btn-sm"
+            - else
+              h5
+                span.badge.badge-secondary 未受領

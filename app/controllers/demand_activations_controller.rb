@@ -21,7 +21,7 @@ class DemandActivationsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && !user.demand_activated? && user.authenticated?(:demand, params[:id])
       user.demand_activate
-      flash[:notice] = "認証が完了しました"
+      flash[:notice] = "認証が完了しました。このままページを閉じてください"
       redirect_to root_url
     else
       flash[:alert] = "認証に失敗しました"

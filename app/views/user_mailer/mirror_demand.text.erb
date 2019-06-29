@@ -1,6 +1,6 @@
 <%= @user.demand_email %> 様
 
-<%= @user.email %> 様から請求が来ましたのでご確認ください
+<%= @user.email %> 様へ請求をしたのでお知らせします。
 
 ------------------------------------------------------
 合計支出: <%= @total_cost %> 円
@@ -14,8 +14,3 @@
 <% end %>
 
 ------------------------------------------------------
-内容を確認しましたら、以下のURLをクリックすると承認済みのスタンプがつきます。
-<%= approve_demand_url(@demand , user: @user.id, key: @user.demand_digest) %>
-
-また、こちらのURLから、今までの請求履歴を見ることができます。
-<%= demands_url(user: @user.id, key: @user.demand_digest) %>

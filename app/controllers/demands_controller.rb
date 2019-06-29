@@ -1,5 +1,5 @@
 class DemandsController < ApplicationController
-  before_action :login_required, only: [:new, :create]
+  before_action :login_required, only: [:new, :create, :receive]
 
   def index
     @user = current_user_or_guest
@@ -60,6 +60,19 @@ class DemandsController < ApplicationController
       demand.approve
       flash[:notice] = "認証しました"
       redirect_to helpers.guest_or_user_demands_path(guest)
+    else
+      flash[:alert] = "エラーが発生しました"
+      redirect_to root_url
+    end
+  end
+
+  def receive
+    user = current_user
+    demand = user.demands.find(params[:id])
+    if !demand.received?
+      demand.receive
+      flash[:notice] = "受領処理が正常に終わりました"
+      redirect_to demands_url
     else
       flash[:alert] = "エラーが発生しました"
       redirect_to root_url

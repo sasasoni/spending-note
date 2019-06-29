@@ -12,7 +12,15 @@ h1 請求履歴の詳細
     h5.card-title.mb-2= Demand.human_attribute_name(:total_cost)
     p.card-text= @demand.total_cost
     h5.card-title.mb-2= Demand.human_attribute_name(:approved)
-    p.card-text= @demand.approved? ? "承認済み" : "未承認"
+    p.card-text
+      - if @demand.approved?
+        h5
+          span.badge.badge-success 承認済み
+      - elsif user_signed_in?
+        h5
+          span.badge.badge-secondary 未承認
+      - else
+        = link_to "認証する", approve_demand_path(@demand , user: @user.id, key: @user.demand_digest), class: "btn btn-primary btn-sm"
     h5.card-title.mb-2= Demand.human_attribute_name(:memo)
     p.card-text= @demand.memo
 / table.table.table-hover

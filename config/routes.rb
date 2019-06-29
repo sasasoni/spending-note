@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :demand_activations, only: [:new, :create, :edit]
   resources :demands, only: [:index, :show, :new, :create, :edit, :update] do
     get 'approve', on: :member
+    get 'receive', on: :member
   end
   resources :costs do
     get 'survey', on: :collection

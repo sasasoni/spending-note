@@ -27,7 +27,7 @@ ja:
         total_cost: "請求金額"
         approved: "認証状態"
         memo: "メモ"
-        created_at: "請求日"
+        created_at: "請求日時"
   date:
     abbr_day_names:
       - 日

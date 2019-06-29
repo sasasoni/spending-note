@@ -7,10 +7,14 @@ class Demand < ApplicationRecord
 
   def self.record(user)
     total_cost = user.costs.take_demands(user).sum(:expenditure)
-    user.demands.create(total_cost: total_cost, approved: false)
+    user.demands.create(total_cost: total_cost, approved: false, received: false)
   end
 
   def approve
     update_columns(approved: true)
+  end
+
+  def receive
+    update_columns(received: true)
   end
 end
