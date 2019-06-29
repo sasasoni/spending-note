@@ -7,10 +7,10 @@
 
 内訳
 ----------------------------------------
-<%= Cost.human_attribute_name(:name) %> | <%= Cost.human_attribute_name(:expenditure) %> | <%= Item.human_attribute_name(:name) %> | <%= Cost.human_attribute_name(:paid_date) %>
+<%= Cost.human_attribute_name(:name) %> | <%= Cost.human_attribute_name(:expenditure) %> | <%= Item.human_attribute_name(:name) %> | <%= Cost.human_attribute_name(:paid_date) %> | <%= Cost.human_attribute_name(:memo) %>
 ----------------------------------------
 <% @costs.each do |cost| %>
-  <%= cost.name %> | <%= cost.expenditure %> | <%= @items[cost.item_id-1] %> | <%= cost.paid_date %>
+  <%= cost.name %> | <%= cost.expenditure %> | <%= @items[cost.item_id-1] %> | <%= cost.paid_date %> | <%= truncate cost.memo, length: 20 %>
 <% end %>
 
 ------------------------------------------------------

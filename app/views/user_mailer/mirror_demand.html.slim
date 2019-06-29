@@ -18,6 +18,7 @@ table.table.table-hover
       th= Cost.human_attribute_name(:expenditure)
       th= Item.human_attribute_name(:name)
       th= Cost.human_attribute_name(:paid_date)
+      th= Cost.human_attribute_name(:memo)
     tbody
       - @costs.each do |cost|
         tr
@@ -25,3 +26,4 @@ table.table.table-hover
           td= cost.expenditure
           td= @items[cost.item_id-1]
           td= cost.paid_date
+          td= truncate cost.memo, length: 20
