@@ -77,3 +77,5 @@ gem 'chart-js-rails'
 gem 'webpacker'
 
 gem 'ransack'
+
+gem 'kaminari'
