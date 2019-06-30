@@ -21,7 +21,7 @@ class Cost < ApplicationRecord
     end_date = date.end_of_month
 
     # 支払い日が指定した期間内にあるものを取り出す
-    where("paid_date >= ? AND paid_date  <= ?", start_date, end_date)
+    where("paid_date > ? AND paid_date  <= ?", start_date, end_date)
     # where(Cost.arel_table[:paid_date].gteq(start_date).and(Cost.arel_table[:paid_date].lteq(end_date)))
   end
   scope :take_demands, -> (user) do
