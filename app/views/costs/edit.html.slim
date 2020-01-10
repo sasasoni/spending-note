@@ -22,7 +22,7 @@ h1 経費の編集
   .form-group
     = f.label :paid_date
     .form-inline
-      = f.date_select :paid_date, { start_year: Time.current.year, end_year: Time.current.year + 1, use_month_number: true }, class: "form-control"
+      = f.date_select :paid_date, { start_year: Time.current.year - 1, end_year: Time.current.year, use_month_number: true }, class: "form-control"
 
   .form-group
     = f.label :item_id, "費目名"
