@@ -17,7 +17,9 @@ h1.page-header year="#{@year}" month="#{@month}"
   h5.mb-3
     |合計支出:
     = @total_cost
-    |円
+    |円(内自費支出:
+    = @total_private_cost
+    |円)
 
   .table-responsive
     .my-3

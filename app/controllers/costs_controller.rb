@@ -70,6 +70,7 @@ class CostsController < ApplicationController
     @q = current_user.costs.period(@date).ransack(params[:q])
     @costs = @q.result(distinct: true)
     @total_cost = @costs.sum(:expenditure)
+    @total_private_cost = @costs.where(demand: false).sum(:expenditure)
     @items = Item.all.pluck(:name)
     @costs_page = @costs.page(params[:page]).per(20)
     respond_to do |format|
