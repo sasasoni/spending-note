@@ -50,7 +50,7 @@ class CostsController < ApplicationController
   end
 
   def survey
-    # 5/25/00:00~6/24/23:59は6月分として集計したい
+    # 5/25/00:00~6/24/23:59は6月分として集計したい(現在は違う仕様にしてる)
     # request=>costs/survey?year=2019&month=6
     @year = params[:year] || Time.current.year
     @month = params[:month] || Time.current.month
